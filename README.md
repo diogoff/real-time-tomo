@@ -1,2 +1,2 @@
-# real-time-tomo
-Source code for a real-time tomography project
+# Real-time Plasma Tomography for JET
+
