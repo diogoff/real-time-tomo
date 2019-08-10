@@ -1,4 +1,4 @@
-# Towards real-time tomography for JET
+# Real-time tomography
 
 1. Run `python tomo_data.py` to gather the training data.
 
