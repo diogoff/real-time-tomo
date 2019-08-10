@@ -1,4 +1,4 @@
-# Towards real-time plasma tomography
+# Towards real-time plasma tomography for JET
 
 ### Introduction
 
@@ -45,3 +45,11 @@ Numerical libraries, such as NumPy, implement matrix multiplication in vectorize
 5. Run `python test_plot.py 92213 46.40 54.39 0.01` to plot the reconstructions for a test pulse, in this case 92213 between t=46.40s and t=54.39s with a time step of 0.01s.
 
     - This script will read the tomographic reconstructions from `test_data.hdf` and reshape them into 196x115 for display.
+
+### References
+
+_Regularization extraction for real-time plasma tomography at JET_
+[[paper](http://ocs.ciemat.es/EPS2018PAP/pdf/P4.1005.pdf)]
+[[poster](http://web.tecnico.ulisboa.pt/diogo.ferreira/papers/ferreira18regularization_poster.pdf)]  
+D. R. Ferreira, D. D. Carvalho, P. J. Carvalho, H. Fernandes, and JET Contributors  
+[45th EPS Conference on Plasma Physics](https://eps2018.eli-beams.eu/en/), Prague, Czech Republic, July 2-6, 2018
