@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import sys
 import data
-import h5py
 import numpy as np
 
 # ----------------------------------------------------------------------
@@ -16,18 +15,12 @@ print('pulse:', pulse)
 
 # ----------------------------------------------------------------------
 
-fname = 'test_data.hdf'
-print('Writing:', fname)
-f = h5py.File(fname, 'a')
-
 bolo, bolo_t = data.get_bolo(pulse)
 
-pulse = str(pulse)
-if pulse in f:
-    del f[pulse]
+fname = 'bolo.txt'
+print('Writing:', fname)
+np.savetxt(fname, bolo)
 
-g = f.create_group(pulse)
-g.create_dataset('bolo', data=bolo)
-g.create_dataset('bolo_t', data=bolo_t)
-
-f.close()
+fname = 'bolo_t.txt'
+print('Writing:', fname)
+np.savetxt(fname, bolo_t)

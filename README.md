@@ -22,7 +22,7 @@ Numerical libraries, such as NumPy, implement matrix multiplication in vectorize
     
     - Together with the reconstructions, the script also gathers the corresponding bolometer data. Currently, these bolometer data come from the PPF system but it is expected that, in real-time, they will come from another source (e.g. JPF).
     
-    - An output file `train_data.hdf` will be created with the bolometer and tomography data.
+    - An output file `train_data.hdf` will be created with the the bolometer and tomography data that will be used for training.
 
 2. Run `python train_weights.py` to train the model.
 
@@ -32,21 +32,21 @@ Numerical libraries, such as NumPy, implement matrix multiplication in vectorize
 
     - Precede the command with `TF_CPP_MIN_LOG_LEVEL=3` to suppress most of TensorFlow output.
  
-    - An output file `weights.npy` will be created with the trained weights.
+    - An output file `weights.txt` will be created with the trained weights.
     
 3. Run `python test_data.py 92213` to get the bolometer data for a test pulse.
 
     - Again, the bolometer data come from the PPF system but it is expected that, in real-time, they will come from another source (e.g. JPF).
 
-    - The bolometer data will be appended to `test_data.hdf`. This file will be created if it does not exist.
+    - The bolometer data will be saved to `bolo.txt` and `bolo_t.txt`, where the first contains the measurements and the second contains the time of those measurements.
 
 4. Run `python test_weights.py` to generate the reconstructions from the bolometer data.
 
-    - This script will go through every pulse in `test_data.hdf` and multiply the bolometer data by the weights in order to generate the corresponding reconstructions.
+    - This script will multiply the bolometer data by the trained weights in order to generate the corresponding reconstructions.
 
-    - The results will be appended to `test_data.hdf`.
+    - The results will be saved to `tomo.txt` and `tomo_t.txt`, where the first contains the reconstructions and the second contains the time of those reconstructions.
 
 5. Run `python test_plot.py 92213 46.40 54.39 0.01` to plot the reconstructions for the test pulse, between t=46.40s and t=54.39s with a time step of 0.01s.
 
-    - This script will read the tomographic reconstructions from `test_data.hdf` and reshape them into 196x115 for display.
+    - This script will read the tomographic reconstructions from `tomo.txt` and reshape them into 196x115 for display.
 

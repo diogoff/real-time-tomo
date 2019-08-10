@@ -36,18 +36,16 @@ fps = 30
 
 # ----------------------------------------------------------------------
 
-fname = 'test_data.hdf'
+fname = 'tomo.txt'
 print('Reading:', fname)
-f = h5py.File(fname, 'r')
+tomo = np.loadtxt(fname)
 
-g = f[pulse]
-tomo = g['tomo'][:]
-tomo_t = g['tomo_t'][:]
+fname = 'tomo_t.txt'
+print('Reading:', fname)
+tomo_t = np.loadtxt(fname)
 
 print('tomo:', tomo.shape, tomo.dtype)
 print('tomo_t:', tomo_t.shape, tomo_t.dtype)
-
-f.close()
 
 # ----------------------------------------------------------------------
 
@@ -114,7 +112,6 @@ def animate(k):
     ax.set_title(title, fontsize=fontsize)
     im.set_data(frames[k])
 
-animation = ani.FuncAnimation(fig, animate, frames=range(frames.shape[0]))
+animation = ani.FuncAnimation(fig, animate, frames=range(frames.shape[0]), repeat=False)
 
 plt.show()
-

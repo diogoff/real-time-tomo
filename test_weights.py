@@ -1,45 +1,43 @@
 from __future__ import print_function
 
-import h5py
 import numpy as np
 
 # ----------------------------------------------------------------------
 
-fname = 'weights.npy'
+fname = 'weights.txt'
 print('Reading:', fname)
-weights = np.load(fname)
+weights = np.loadtxt(fname)
 
 print('weights:', weights.shape, weights.dtype)
 
 # ----------------------------------------------------------------------
 
-fname = 'test_data.hdf'
+fname = 'bolo.txt'
 print('Reading:', fname)
-f = h5py.File(fname, 'a')
+bolo = np.loadtxt(fname)
+
+print('bolo:', bolo.shape, bolo.dtype)
+
+fname = 'bolo_t.txt'
+print('Reading:', fname)
+bolo_t = np.loadtxt(fname)
+
+print('bolo_t:', bolo_t.shape, bolo_t.dtype)
 
 # ----------------------------------------------------------------------
 
-for pulse in f:
-    print('pulse:', pulse)
+tomo = np.matmul(bolo, weights)
+tomo_t = bolo_t
 
-    g = f[pulse]
-    bolo = g['bolo'][:]
-    bolo_t = g['bolo_t'][:]
-    print('bolo:', bolo.shape, bolo.dtype)
-    print('bolo_t:', bolo_t.shape, bolo_t.dtype)
-
-    tomo = np.matmul(bolo, weights)
-    tomo_t = bolo_t
-    print('tomo:', tomo.shape, tomo.dtype)
-    print('tomo_t:', tomo_t.shape, tomo_t.dtype)
-    
-    if 'tomo' in g:
-        del g['tomo']
-        del g['tomo_t']
-
-    g.create_dataset('tomo', data=tomo)
-    g.create_dataset('tomo_t', data=tomo_t)
+print('tomo:', tomo.shape, tomo.dtype)
+print('tomo_t:', tomo_t.shape, tomo_t.dtype)
 
 # ----------------------------------------------------------------------
 
-f.close()
+fname = 'tomo.txt'
+print('Writing:', fname)
+np.savetxt(fname, tomo)
+
+fname = 'tomo_t.txt'
+print('Writing:', fname)
+np.savetxt(fname, tomo_t)
