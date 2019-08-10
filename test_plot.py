@@ -36,16 +36,18 @@ fps = 30
 
 # ----------------------------------------------------------------------
 
-fname = 'tomo.txt'
+fname = 'test_data.hdf'
 print('Reading:', fname)
-tomo = np.loadtxt(fname)
+f = h5py.File(fname, 'r')
 
-fname = 'tomo_t.txt'
-print('Reading:', fname)
-tomo_t = np.loadtxt(fname)
+g = f[pulse]
+tomo = g['tomo'][:]
+tomo_t = g['tomo_t'][:]
 
 print('tomo:', tomo.shape, tomo.dtype)
 print('tomo_t:', tomo_t.shape, tomo_t.dtype)
+
+f.close()
 
 # ----------------------------------------------------------------------
 

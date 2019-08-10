@@ -64,6 +64,6 @@ print()
 weights = sess.run(W)
 print('weights:', weights.shape, weights.dtype)
 
-fname = 'weights.txt'
+fname = 'weights.npy'
 print('Writing:', fname)
-np.savetxt(fname, weights)
+np.save(fname, weights)
