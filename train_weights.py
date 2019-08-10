@@ -13,13 +13,15 @@ f = h5py.File(fname, 'r')
 X = []
 Y = []
 
-for pulse in f:
-    g = f[pulse]
-    bolo = g['bolo'][:]
-    tomo = g['tomo'][:]
-    for i in range(bolo.shape[0]):
-        X.append(bolo[i])
-        Y.append(tomo[i].flatten())
+for uid in f:
+    g = f[uid]
+    for pulse in g:
+        h = g[pulse]
+        bolo = h['bolo'][:]
+        tomo = h['tomo'][:]
+        for i in range(bolo.shape[0]):
+            X.append(bolo[i])
+            Y.append(tomo[i].flatten())
 
 X = np.asarray(X).T
 Y = np.asarray(Y).T

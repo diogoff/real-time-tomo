@@ -1,7 +1,6 @@
 from __future__ import print_function
 
 import numpy as np
-import pyexcel_ods
 from ppf import *
 
 ppfgo()
@@ -9,21 +8,20 @@ ppfssr([0,1,2,3,4])
 
 # ------------------------------------------------------------------------------
 
-def get_tomo(pulse):
+def get_tomo(uid, pulse):
     tomo = []
     tomo_t = []
-    for uid in ['jetppf', 'bolom']:
-        ppfuid(uid, 'r')
-        for i in range(1, 100):
-            pr = 'pr%02d' % i
-            ihdata, iwdata, data, x, t, ier = ppfget(pulse, 'bolt', pr, reshape=1)
-            if ier != 0:
-                break
-            t = np.float32(ihdata.strip().split()[-1][2:-1])
-            data = np.flipud(np.transpose(data))
-            data = np.clip(data, 0., None) / 1e6 # clip and scale
-            tomo.append(data)
-            tomo_t.append(t)
+    ppfuid(uid, 'r')
+    for i in range(1, 100):
+        pr = 'pr%02d' % i
+        ihdata, iwdata, data, x, t, ier = ppfget(pulse, 'bolt', pr, reshape=1)
+        if ier != 0:
+            break
+        t = np.float32(ihdata.strip().split()[-1][2:-1])
+        data = np.flipud(np.transpose(data))
+        data = np.clip(data, 0., None) / 1e6 # clip and scale
+        tomo.append(data)
+        tomo_t.append(t)
     if len(tomo) > 0:
         tomo = np.array(tomo)
         tomo_t = np.array(tomo_t)
