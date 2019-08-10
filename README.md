@@ -28,7 +28,7 @@ Numerical libraries, such as NumPy, implement matrix multiplication in vectorize
 
     - This script uses TensorFlow and should be run on a GPU machine for better performance.
 
-    - Precede the command with `CUDA_VISIBLE_DEVICES=0` to use a single GPU.
+    - Precede the command with `CUDA_VISIBLE_DEVICES=0` to use a single GPU (0 in this case).
 
     - Precede the command with `TF_CPP_MIN_LOG_LEVEL=3` to suppress most of TensorFlow output.
  
