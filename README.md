@@ -14,3 +14,8 @@
     
     - An output file `train_weights.npy` is created with the trained weights.
     
+3. Run `python test_data.py 92213` to get the bolometer data for one or more test pulses.
+
+    - Again, the bolometer data come from the PPF system but it is expected that, in real-time, they will come from another source (e.g. JPF).
+
+    - An output file `test_data.hdf` is created with the bolometer data.
