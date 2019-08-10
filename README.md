@@ -22,7 +22,7 @@ Numerical libraries, such as NumPy, implement matrix multiplication in vectorize
     
     - Together with the reconstructions, the script also gathers the corresponding bolometer data. Currently, these bolometer data come from the PPF system but it is expected that, in real-time, they will come from another source (e.g. JPF).
     
-    - An output file `train_data.hdf` will be created with the the bolometer and tomography data that will be used for training.
+    - An output file `train_data.hdf` will be created with the the bolometer data and the tomography data that will be used for training.
 
 2. Run `python train_weights.py` to train the model.
 
