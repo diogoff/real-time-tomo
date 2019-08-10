@@ -2,15 +2,15 @@
 
 ### Introduction
 
-With a view towards real-time, this code computes tomographic reconstructions from bolometer data based on simple matrix multiplication Y = X*W where:
+With a view towards real-time, this code computes tomographic reconstructions from bolometer data based on a simple matrix multiplication Y = X*W where:
 
 - X is a row vector of shape 1x56 containing the measurements collected from the 56 channels of the bolometer system.
 
-- Y is a row vector of shape 1x22540 containing the tomographic reconstruction corresponding to the measurements in X. The tomographic reconstruction has a resolution of 196x115 but here it is being represented in flattened form (196x115 = 22540).
+- Y is a row vector of shape 1x22540 containing the tomographic reconstruction corresponding to the measurements in X. The reconstruction has a resolution of 196x115 but here it is being represented in flattened form (196x115 = 22540).
 
 - W is a weight matrix of shape 56x22540 where each entry represents how much each measurement in X contributes to each pixel in Y. This weight matrix is trained on existing reconstructions, using gradient descent to minimize the mean absolute error between a true reconstruction Y and the result produced by X*W.
 
-When the bolometer data has been collected at N different time points, then X becomes a matrix of shape Nx56, and Y becomes a matrix of shape Nx22540. However, W has still a shape of 56x22540 and the tomographic reconstructions for all time points in X can be calculated in one sweep by the matrix multiplication Y = X*W.
+When the bolometer data has been collected at N different time points, then X becomes a matrix of shape Nx56, and Y becomes a matrix of shape Nx22540. However, W has still a shape of 56x22540 and the tomographic reconstructions for all time points in X can be calculated at once by the matrix multiplication Y = X*W.
 
 Numerical libraries, such as NumPy, implement matrix multiplication in vectorized form, using routines that can take advantage of multiple cores. For real-time, it will be important to use vectorized multiplication, which can be much faster than a naive implementation.
 
