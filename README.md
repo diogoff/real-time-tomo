@@ -52,4 +52,4 @@ _Regularization extraction for real-time plasma tomography at JET_
 [[paper](http://ocs.ciemat.es/EPS2018PAP/pdf/P4.1005.pdf)]
 [[poster](http://web.tecnico.ulisboa.pt/diogo.ferreira/papers/ferreira18regularization_poster.pdf)]  
 D. R. Ferreira, D. D. Carvalho, P. J. Carvalho, H. Fernandes, and JET Contributors  
-[45th EPS Conference on Plasma Physics](https://eps2018.eli-beams.eu/en/), Prague, Czech Republic, July 2-6, 2018
+45th EPS Conference on Plasma Physics, Prague, Czech Republic, July 2-6, 2018
