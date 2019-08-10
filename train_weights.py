@@ -1,0 +1,67 @@
+from __future__ import print_function
+
+import h5py
+import numpy as np
+import tensorflow as tf
+
+# ----------------------------------------------------------------------
+
+fname = 'tomo_data.hdf'
+print('Reading:', fname)
+f = h5py.File(fname, 'r')
+
+X = []
+Y = []
+
+for pulse in f:
+    g = f[pulse]
+    bolo = g['bolo'][:]
+    tomo = g['tomo'][:]
+    for i in range(bolo.shape[0]):
+        X.append(bolo[i])
+        Y.append(tomo[i].flatten())
+
+X = np.asarray(X).T
+Y = np.asarray(Y).T
+
+print('X:', X.shape, X.dtype)
+print('Y:', Y.shape, Y.dtype)
+
+# ----------------------------------------------------------------------
+
+X = tf.constant(X, dtype=tf.float32)
+Y = tf.constant(Y, dtype=tf.float32)
+
+W = np.zeros((Y.shape[0], X.shape[0]), dtype=np.float32)
+print('W:', W.shape, W.dtype)
+
+W = tf.Variable(W)
+
+loss = tf.reduce_mean(tf.abs(Y - tf.tensordot(W, X, 1)))
+
+optimizer = tf.train.AdamOptimizer()
+
+train = optimizer.minimize(loss)
+
+# ----------------------------------------------------------------------
+
+sess = tf.Session()
+
+init = tf.global_variables_initializer()
+sess.run(init)
+
+print('%10s %10s' % ('epoch', 'loss'))
+for epoch in range(10000):
+    loss_value = sess.run([train, loss])[1]
+    print('\r%10d %10.6f' % (epoch+1, loss_value), end='')
+
+print()
+
+# ----------------------------------------------------------------------
+
+weights = sess.run(W)
+print('weights:', weights.shape, weights.dtype)
+
+fname = 'train_weights.npy'
+print('Writing:', fname)
+np.save(fname, weights)
