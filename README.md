@@ -2,7 +2,7 @@
 
 ### Introduction
 
-With a view towards real-time applications, this code computes tomographic reconstructions from bolometer data based on a simple matrix multiplication Y = X*W where:
+With a view towards real-time applications, this code computes tomographic reconstructions from bolometer data based on a simple matrix multiplication Y = X\*W where:
 
     - X is a row vector of shape 1x56 containing the measurements collected from the 56 channels of the bolometer system.
 
