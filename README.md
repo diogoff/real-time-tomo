@@ -26,7 +26,7 @@ Numerical libraries, such as NumPy, implement matrix multiplication in vectorize
 
 2. Run `python train_weights.py` to train the model.
 
-    - This script requires TensorFlow and should be run on a GPU machine for better performance.
+    - This script uses TensorFlow and should be run on a GPU machine for better performance.
 
     - Precede the command with `CUDA_VISIBLE_DEVICES=0` to use a single GPU.
 
