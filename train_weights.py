@@ -6,7 +6,7 @@ import tensorflow as tf
 
 # ----------------------------------------------------------------------
 
-fname = 'tomo_data.hdf'
+fname = 'train_data.hdf'
 print('Reading:', fname)
 f = h5py.File(fname, 'r')
 
@@ -23,8 +23,8 @@ for uid in f:
             X.append(bolo[i])
             Y.append(tomo[i].flatten())
 
-X = np.asarray(X).T
-Y = np.asarray(Y).T
+X = np.array(X)
+Y = np.array(Y)
 
 print('X:', X.shape, X.dtype)
 print('Y:', Y.shape, Y.dtype)
@@ -34,12 +34,12 @@ print('Y:', Y.shape, Y.dtype)
 X = tf.constant(X, dtype=tf.float32)
 Y = tf.constant(Y, dtype=tf.float32)
 
-W = np.zeros((Y.shape[0], X.shape[0]), dtype=np.float32)
+W = np.zeros((X.shape[1], Y.shape[1]), dtype=np.float32)
 print('W:', W.shape, W.dtype)
 
 W = tf.Variable(W)
 
-loss = tf.reduce_mean(tf.abs(Y - tf.tensordot(W, X, 1)))
+loss = tf.reduce_mean(tf.abs(Y - tf.tensordot(X, W, 1)))
 
 optimizer = tf.train.AdamOptimizer()
 
@@ -64,6 +64,6 @@ print()
 weights = sess.run(W)
 print('weights:', weights.shape, weights.dtype)
 
-fname = 'train_weights.npy'
+fname = 'weights.npy'
 print('Writing:', fname)
 np.save(fname, weights)

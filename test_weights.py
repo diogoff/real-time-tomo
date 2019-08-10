@@ -8,6 +8,7 @@ import numpy as np
 fname = 'weights.npy'
 print('Reading:', fname)
 weights = np.load(fname)
+
 print('weights:', weights.shape, weights.dtype)
 
 # ----------------------------------------------------------------------
