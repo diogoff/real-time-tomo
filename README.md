@@ -1,4 +1,4 @@
-# Real-time Plasma Tomography for JET
+# Towards Real-time Plasma Tomography for JET
 
 1. Run `python tomo_data.py` to gather the training data.
 
