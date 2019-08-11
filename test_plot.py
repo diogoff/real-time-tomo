@@ -114,6 +114,6 @@ def animate(k):
     ax.set_title(title, fontsize=fontsize)
     im.set_data(frames[k])
 
-animation = ani.FuncAnimation(fig, animate, frames=range(frames.shape[0]), repeat=False)
+animation = ani.FuncAnimation(fig, animate, frames=range(frames.shape[0]), interval=0, repeat=False)
 
 plt.show()
