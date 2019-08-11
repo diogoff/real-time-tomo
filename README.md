@@ -20,7 +20,7 @@ Numerical libraries, such as NumPy, implement matrix multiplication in vectorize
 
     - The training data consists in a subset of high-quality tomographic reconstructions that have been validated by the RO, and are therefore referred to as _reliable reconstructions_.
     
-    - Together with the reconstructions, the script also gathers the corresponding bolometer data. Currently, these bolometer data come from the PPF system but it is expected that, in real-time, they will come from another source (e.g. JPF).
+    - Together with the reconstructions, the script also gathers the corresponding bolometer data. Currently, these bolometer data come from the PPF system (see `data.py`) but it is expected that, in real-time, they will come from another source (e.g. JPF).
     
     - An output file `train_data.hdf` will be created with the the bolometer data and the tomography data that will be used for training.
 
