@@ -1,4 +1,4 @@
-# Towards real-time plasma tomography for JET
+# Towards real-time plasma tomography
 
 ### Introduction
 
