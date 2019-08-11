@@ -32,7 +32,7 @@ Numerical libraries, such as NumPy, implement matrix multiplication in vectorize
     
 3. Run `python test_data.py 92213` to get the bolometer data for a test pulse.
 
-    - Again, the bolometer data come from the PPF system but it is expected that, in real-time, they will come from another source (e.g. JPF).
+    - Again, the bolometer data come from the PPF system but it is expected that, in real-time, they will come from another source.
 
     - The bolometer data will be appended to `test_data.hdf`. This file will be created if it does not exist.
 
